@@ -16,6 +16,14 @@
     <body>
         {% block body %}
           <h1>Bienvenue à vous dans ce blog pictural!</h1>
+
+          {% for pin in pins %}
+            <article>
+                <h2>{{ pin.title }}</h2>
+                <p>{{ pin.description }}</p>
+            </article>
+          {% endfor %}
+
         {% endblock %}
     </body>
 </html>

@@ -14,16 +14,10 @@ class PinsController extends AbstractController
     #[Route('/')]
     public function index(EntityManagerInterface $em): Response
     {
-        $pin = new Pin;
-        $pin->setTitle('Mon 3ème titre');
-        $pin->setDescription('Ceci est une longue 3ème description...');
+        $repo = $em->getRepository(Pin::class);
+        $pins = $repo->findAll();
 
-        $em->persist($pin);
-        $em->flush();
-
-        dump($pin);
-
-        return $this->render('pins/index.html.twig');
+        return $this->render('pins/index.html.twig', ["pins" => $pins]);
     }
 
     public function coucou(): Response
