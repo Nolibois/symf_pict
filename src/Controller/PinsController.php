@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Pin;
+use App\Repository\PinRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,16 +14,21 @@ class PinsController extends AbstractController
 {
 
     #[Route('/')]
-    public function index(EntityManagerInterface $em): Response
+    public function index(PinRepository $repo): Response //ou index(EntityManagerInterface $em)
     {
-        $repo = $em->getRepository(Pin::class);
-        $pins = $repo->findAll();
+        /* $repo = $em->getRepository(Pin::class);
+        $pins = $repo->findAll(); */
 
-        return $this->render('pins/index.html.twig', ["pins" => $pins]);
+        return $this->render('pins/index.html.twig', ['pins' => $repo->findAll()]); // compact('pins') ou = ["pins" => $pins]
     }
 
-    public function coucou(): Response
+    #[Route('/pins/create', methods: ["GET", "POST"])]
+    public function create(Request $request): Response
     {
-        return $this->render('pins/welcome.html.twig');
+        if ($request->isMethod("POST")) {
+            dd($request->request->all());
+        }
+
+        return $this->render('pins/create.html.twig');
     }
 }
