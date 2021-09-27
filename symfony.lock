@@ -200,6 +200,9 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/password-hasher": {
+        "version": "v5.3.7"
+    },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.23.1"
     },
@@ -235,6 +238,12 @@
         ]
     },
     "symfony/runtime": {
+        "version": "v5.3.4"
+    },
+    "symfony/security-core": {
+        "version": "v5.3.7"
+    },
+    "symfony/security-csrf": {
         "version": "v5.3.4"
     },
     "symfony/service-contracts": {

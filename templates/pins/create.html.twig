@@ -17,7 +17,12 @@
         {% block body %}
           <h1>Créer un nouveau Pin</h1>
 
+          <a href="{{ path('app_home')}}">Revenir à l'accueil</a>
+
           <form method='post' >
+            <div>
+              <input type="hidden" name="_token" value="{{ csrf_token('pins_create') }}"></input>
+            </div>
             <div>
               <label for='title'>Titre</label><br>
               <input type="text" id='title' name='title'></input>

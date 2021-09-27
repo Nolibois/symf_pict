@@ -17,6 +17,8 @@
         {% block body %}
           <h1>Bienvenue à vous dans ce blog pictural!</h1>
 
+          <a href="{{ path('app_pin_create') }}">Créer un nouveau Pin</a>
+
           {% for pin in pins %}
             <article>
                 <h2>{{ pin.title }}</h2>

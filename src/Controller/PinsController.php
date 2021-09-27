@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PinsController extends AbstractController
 {
 
-    #[Route('/')]
+    #[Route('/', name: 'app_home')]
     public function index(PinRepository $repo): Response //ou index(EntityManagerInterface $em)
     {
         /* $repo = $em->getRepository(Pin::class);
@@ -22,11 +22,22 @@ class PinsController extends AbstractController
         return $this->render('pins/index.html.twig', ['pins' => $repo->findAll()]); // compact('pins') ou = ["pins" => $pins]
     }
 
-    #[Route('/pins/create', methods: ["GET", "POST"])]
-    public function create(Request $request): Response
+    #[Route('/pins/create', name: 'app_pin_create', methods: ["GET", "POST"])]
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
         if ($request->isMethod("POST")) {
-            dd($request->request->all());
+            $data = $request->request->all();
+
+            if ($this->isCsrfTokenValid('pins_create', $data['_token'])) {
+                $pin = new Pin;
+                $pin->setTitle($data['title']);
+                $pin->setDescription($data['description']);
+
+                $em->persist($pin);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('pins/create.html.twig');
