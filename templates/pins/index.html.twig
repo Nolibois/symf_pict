@@ -19,12 +19,16 @@
 
           <a href="{{ path('app_pin_create') }}">Créer un nouveau Pin</a>
 
-          {% for pin in pins %}
-            <article>
-                <h2>{{ pin.title }}</h2>
-                <p>{{ pin.description }}</p>
-            </article>
-          {% endfor %}
+            {% for pin in pins %}
+                <article>
+                    <h2>{{ pin.title }}</h2>
+                    <p>{{ pin.description }}</p>
+                </article>
+
+            {% else %}
+              <p>Désolé, mais aucun "pin" n'est disponible.</p>  
+
+            {% endfor %}
 
         {% endblock %}
     </body>

@@ -19,7 +19,12 @@
 
           <a href="{{ path('app_home')}}">Revenir à l'accueil</a>
 
-          {{ form(createForm) }}
+          {{ form_start(createForm) }}
+            {{ form_widget(createForm)}}
+
+            <input type="submit" value="Envoyer"></input>
+
+          {{ form_end(createForm)}}
 
         {% endblock %}
     </body>
