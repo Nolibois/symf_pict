@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Accueil{% endblock %}</title>
@@ -15,22 +15,12 @@
     </head>
     <body>
         {% block body %}
-          <h1>Bienvenue à vous dans ce blog pictural!</h1>
+          <h1>Créer un nouveau Pin</h1>
 
-          <a href="{{ path('app_pin_create') }}">Créer un nouveau Pin</a>
+          <a href="{{ path('app_home')}}">Revenir à l'accueil</a>
 
-            {% for pin in pins %}
-                <article>
-                    <h2>{{ pin.title }}</h2>
-                    <p>{{ pin.description }}</p>
-                    <a href="{{ path('app_pins_show', {'id': pin.id}) }}">Vers {{ pin.title }}</a>
-
-                </article>
-
-            {% else %}
-              <p>Désolé, mais aucun "pin" n'est disponible.</p>  
-
-            {% endfor %}
+          <h2>PAGE 404 !</h2>
+          <p>Direction inexistante.</p>
 
         {% endblock %}
     </body>
